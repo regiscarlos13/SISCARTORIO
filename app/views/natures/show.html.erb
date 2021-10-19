@@ -1,0 +1,15 @@
+<% @title_painel = "Listagem da #{@nature.model_name.human(count: 1)}" %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @nature.name %>
+</p>
+
+
+<%= link_to edit_nature_path(@nature), class: 'btn btn-primary', title: 'Alterar Dados' do %> 
+<i class="glyphicon glyphicon-pencil"> Alterar</i> 
+<% end %>
+&nbsp;
+<%= link_to natures_path, class: "btn btn-warning", title: "Voltar para Pagina Inicial" do %>
+<i class="glyphicon glyphicon-arrow-left"> Voltar</i> 
+<% end %>

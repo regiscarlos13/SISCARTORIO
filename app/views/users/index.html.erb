@@ -1,0 +1,17 @@
+<%= index_table_javascript %>
+<%= index_table_style %>
+
+<% @title_painel = "Relação de Usuários" %>
+<% @btn_new = btn_new(new_user_path) %>
+
+<div class="table-responsive">
+  <%= table_for(@users, 'index') do %>
+        <% field_table('CPF') { |f| f.cpf} %>
+        <% field_table('Nome') { |f| f.name} %>
+        <% field_table('Email') { |f| f.email} %>
+        <% field_table('Delegacia') { |f| f.registry.name} %>
+        <% field_table('Situação') { |f| f.role} %>
+      <% btn_for %>
+  <% end %>
+</div>
+

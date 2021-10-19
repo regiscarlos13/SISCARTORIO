@@ -1,0 +1,66 @@
+<div align="right" class="mr-4">
+  <b><%= current_user.registry.name %></b>
+</div>
+<nav class="navbar sticky-top  navbar-expand-lg navbar-dark"  style= "background-color: #28a745";>
+  <%= link_to("SISEPC", root_path, class: 'navbar-brand') %>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navsite">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navsite">
+    <ul class="navbar-nav">
+
+      
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown">Cadastros</a>
+        <div class="dropdown-menu">
+          <%= render partial: "layouts/menus/shared/cadastros" %>
+
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <%#= link_to("Conciliar", conciliacaos_path , class: 'nav-link') %>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown">Lançamentos</a>
+        <div class="dropdown-menu">
+          <%= render partial: "layouts/menus/shared/lancamentos" %>
+        </div>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown">Formulários</a>
+        <div class="dropdown-menu">
+          <%= render partial: "layouts/menus/shared/formularios" %>
+        </div>
+      </li>
+
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown">Livros</a>
+        <div class="dropdown-menu">
+          <%= render partial: "layouts/menus/shared/livros" %>
+        </div>
+      </li>
+
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown">Recebimentos</a>
+        <div class="dropdown-menu">
+          <%= render partial: "layouts/menus/shared/recebimentos" %>
+        </div>
+      </li>
+
+
+
+    </ul>
+    <ul class="navbar-nav ml-auto" >
+     <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown">
+        <i class="fa fa-user-circle-o">&nbsp;</i><%= if user_signed_in? == true then current_user.name else current_user end %></a>
+        <div class="dropdown-menu">
+         <%= render partial: 'layouts/menus/shared/email' %>
+       </div>
+     </li>
+   </ul>
+ </div>
+</nav>

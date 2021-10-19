@@ -1,0 +1,28 @@
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#involved_person_id').select2({minimumInputLength: 5});
+	});
+</script>
+<% @title_painel = 'IP: ' "#{@inquery.dp}-#{@inquery.n.to_s.rjust(3, '0')}/#{ @inquery.year.year}" ' - ' 'TOMBADO: ' "#{date(@inquery.establishment)}" ' - ' 'TIPO: ' "#{@inquery.tp}" %>
+ 
+<div class="border mb-3 d-flex justify-content-center">
+	
+	<%= link_to(' Alterar' , edit_inquery_path(@inquery) , class: 'btn btn-primary btn-sm fa fa-edit') %>&nbsp
+	<%= link_to ' Voltar', inqueries_path, class: 'btn btn-warning fa fa-arrow-left', title: "Voltar para Pagina Inicial" %>&nbsp
+	<%= link_to ' Capa', inquery_path(@inquery, :format => 'pdf'), class: 'btn btn-info float-right fa fa-print ',target: '_blank' %>&nbsp
+</div>
+
+<div class="form-row">
+	<div class="col-5">
+
+		<%= render partial: 'inqueries/shared/envolvidos' %>
+	</div>
+
+	<div class="col-4">
+		<%= render partial: 'inqueries/shared/apreensao' %>
+	</div>
+	
+	<div class="col-3">
+		<%= render partial: 'inqueries/shared/capitulacao' %>
+	</div>
+</div>

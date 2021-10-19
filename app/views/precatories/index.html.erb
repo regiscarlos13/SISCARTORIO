@@ -1,0 +1,25 @@
+<%= index_table_javascript %>
+<%= index_table_style %>
+
+<% @title_painel = "Relação de #{@precatories.model_name.human(count: 2)}" %>
+<% @btn_new = btn_new(new_precatory_path) %>
+
+<%= render partial: 'precatories/shared/filter' %>
+
+<% @btn_imprimir = link_to "", precatories_path(@precatories, format: :pdf, conclusion: params[:conclusion], year: params[:year], start: params[:start], end: params[:end]), target: "_blank", class: 'btn btn-warning float-right fa fa-print  mr-2' %>
+
+<div class="table-responsive">
+	<%= table_for(@precatories, 'index') do %>
+	<% field_table(@precatories.model.human_attribute_name('n'))  { |f| "#{f.n.to_s.rjust(3, '0')}/ #{f.year.year}"  } %>
+	<% field_table(@precatories.model.human_attribute_name('Date'))  { |f| date(f.year) } %>
+	<% field_table(@precatories.model.human_attribute_name('registry'))  { |f| f.registry.id == 3  ? "#{f.registry.name}-#{f.city.nome}/#{f.city.uf}" : f.registry.name }%>
+	<% field_table(@precatories.model.human_attribute_name('dp'))  { |f| f.inquery_id == 35 ? f.ipantigo : "#{f.inquery.dp} - #{f.inquery.n.to_s.rjust(3, '0')}/ #{f.inquery.year.year}" }  %>
+	<% field_table(@precatories.model.human_attribute_name('cumprida'))  { |f| f.conclusion_date.blank? ? 'Não' : date(f.conclusion_date) } %>
+
+	<% btn_for %>
+	<% field_table('')  { |f| link_to '', precatory_path(f, format: :pdf), target: "_blank", class: 'btn btn-warning fa fa-print '} %>
+
+	<% end %>
+</div>
+
+<%#= "#{f.inquery_id} #{f.inquery.dp} - #{f.inquery.n.to_s.rjust(3, '0')}/ #{f.inquery.year.year}"  } %>

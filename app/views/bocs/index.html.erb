@@ -1,0 +1,16 @@
+<%= index_table_javascript %>
+<%= index_table_style %>
+
+<% @title_painel = "Relação de #{@bocs.model_name.human(count: 2)}" %>
+<% @btn_new = btn_new(new_boc_path) %>
+
+<div class="table-responsive">
+  <%= table_for(@bocs, 'index') do %>
+	     	  <% field_table(@bocs.model.human_attribute_name('dp'))  { |f| "#{f.dp} - #{f.n.to_s.rjust(3, '0')}/ #{f.year.year}"  } %>
+          <% field_table(@bocs.model.human_attribute_name('establishment'))  { |f| date(f.establishment) } %>
+          <% field_table(@bocs.model.human_attribute_name('city'))  { |f| f.city.nome } %>
+          <% field_table(@bocs.model.human_attribute_name('conclusion'))  { |f| i18n_yes(f.conclusion) } %>
+          <% field_table(@bocs.model.human_attribute_name('situação'))  { |f|f.providenca } %>
+         <% btn_for %>
+  <% end %>
+</div>

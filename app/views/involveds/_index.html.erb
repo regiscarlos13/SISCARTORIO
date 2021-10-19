@@ -1,0 +1,7 @@
+<div class="table-responsive">
+  <%= table_for(@involveds) do %>
+        <% field_table('Nome') { |f| f.person.name} %>
+        <% field_table('Tipo') { |f| f.typeinvolved} %>
+        <% field_table('') { |f| btn_delete(inquery_involved_path(@inquery, f)) } %>
+  <% end %>
+</div>

@@ -1,0 +1,23 @@
+<%= wicked_pdf_stylesheet_link_tag "relatorios/livros" %>
+
+<div class="container">
+	<%= wicked_pdf_image_tag 'pc.jpg', class: 'img-fundo'%>
+
+	<div class="junto border">
+		
+			<br><br><br><br><br><br>
+			<div align="center">
+				<p style="font-size: 70px">LIVRO DE REGISTRO</p>	
+				<p style="font-size: 100px"><%= @year %></p>	
+				<p style="font-size: 70px"><%= @livro %></p>	
+			</div>
+			<br><br><br>
+
+			<div style="font-size: 25px; margin-left: 20px">
+				<p>Primeiro Nº do Procedimento: <%=  @start_tombo  %></p>
+				<p>Último Nº do Procedimento: <%= @end_tombo %> </p>
+			</div>
+	</div>
+</div>
+<div class="page-break"></div>
+

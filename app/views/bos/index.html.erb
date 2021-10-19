@@ -1,0 +1,22 @@
+<%= index_table_javascript %>
+<%= index_table_style %>
+
+<% @title_painel = "Relação de #{@bos.model_name.human(count: 2)}" %>
+<% @btn_new = btn_new(new_bo_path) %>
+
+<% @btn_imprimir = link_to "",  bos_path(@bos, format: :pdf, providenca: params[:providenca], fato: params[:fato],  start: params[:start], end: params[:end], nature: params[:nature] ) , target: "_blank", class: 'btn btn-warning float-right fa fa-print  mr-2' %>
+
+
+
+<%= render partial: 'bos/shared/filter' %>
+<div class="table-responsive">
+  <%= table_for(@bos, 'index') do %>
+        	<% field_table(@bos.model.human_attribute_name('fato'))  { |f| date(f.fato) } %>
+	     	<% field_table(@bos.model.human_attribute_name('n'))  { |f| f.n } %>
+        	<% field_table(@bos.model.human_attribute_name('ocorrência'))  { |f| date(f.ocorrencia) } %>
+        	<% field_table(@bos.model.human_attribute_name('natureza'))  { |f| f.nature.name } %>
+        	<% field_table(@bos.model.human_attribute_name('city'))  { |f| f.city.nome } %>
+        	<% field_table(@bos.model.human_attribute_name('providência'))  { |f| situation_procedimento(f.providenca) } %>
+         <% btn_for %>
+  <% end %>
+</div>

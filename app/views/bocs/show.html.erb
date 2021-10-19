@@ -1,0 +1,45 @@
+<% @title_painel = "Listagem da #{@boc.model_name.human(count: 1)}" %>
+
+<p>
+  <strong>Dp:</strong>
+  <%= @boc.dp %>
+</p>
+
+<p>
+  <strong>N:</strong>
+  <%= @boc.n %>
+</p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @boc.year %>
+</p>
+
+<p>
+  <strong>Establishment:</strong>
+  <%= @boc.establishment %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @boc.city %>
+</p>
+
+<p>
+  <strong>Registry:</strong>
+  <%= @boc.registry %>
+</p>
+
+<p>
+  <strong>Conclusion:</strong>
+  <%= @boc.conclusion %>
+</p>
+
+
+<%= link_to edit_boc_path(@boc), class: 'btn btn-primary', title: 'Alterar Dados' do %> 
+<i class="glyphicon glyphicon-pencil"> Alterar</i> 
+<% end %>
+&nbsp;
+<%= link_to bocs_path, class: "btn btn-warning", title: "Voltar para Pagina Inicial" do %>
+<i class="glyphicon glyphicon-arrow-left"> Voltar</i> 
+<% end %>

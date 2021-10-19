@@ -1,0 +1,40 @@
+<br>
+<br>
+<div align="center">
+	<font style='text-decoration: underline; font-weight:bold; font-size: 20px; '> DATA </font>
+</div>
+<p class="paragraph1">Aos <%= (I18n.l @join.date, :format => :long) %>, recebi o Inquérito Policial nº <%= @join.inquery.dp %>-<%= @join.inquery.n.to_s.rjust(3, '0') %>/<%= @join.inquery.year.year %> para providências, do que para constar lavro este termo. Eu <%= @join.server.name %>, Escrivã(o) de Polícia o digitei e assino.</p>
+<br>
+
+<%= render partial: 'joins/shared/assinatura', formats: [:html] %>
+
+<br>
+<div align="center">
+	<font style='text-decoration: underline; font-weight:bold; font-size: 20px; '> JUNTADA </font>
+</div>
+
+<p class="paragraph1">Aos <%= (I18n.l @join.date, :format => :long) %>, em cumprimento à determinação da Autoridade Policial, junto os documentos abaixo relacionados aos autos do Inquérito Policial nº <%= @join.inquery.dp %>-<%= @join.inquery.n.to_s.rjust(3, '0') %>/<%= @join.inquery.year.year %> para providências, do que para constar lavro este termo. Eu <%= @join.server.name %>, Escrivã(o) de Polícia o digitei e assino.</p>
+
+<div style="text-indent: 100px" >
+	<% @qtd = 0 %>
+	<% @joinsanexos.each do |f| %>
+	<p class="font-12"> <%= @qtd = @qtd +1 %> - <%= f.documento %>.</p>
+	<% end %>
+	
+</div>
+
+<br>
+<%= render partial: 'joins/shared/assinatura', formats: [:html] %>
+
+<br>
+<div align="center">
+	<font style='text-decoration: underline; font-weight:bold; font-size: 20px; '> CERTIDÃO </font>
+</div>
+
+
+<p class="paragraph1">Certifico que nesta data dei fiel cumprimento às determinações contidas no despacho constante às fls. <%= @join.folha %> do Inquérito Policial nº <%= @join.inquery.dp %>-<%= @join.inquery.n.to_s.rjust(3, '0') %>/<%= @join.inquery.year.year %>. O referido é verdade e dou fé.  </p>
+<div align="right">
+	<p class="font-12">   Solonópole - CE, <%= (I18n.l @join.date, :format => :long) %></p>
+</div>
+<br>
+<%= render partial: 'joins/shared/assinatura', formats: [:html] %>

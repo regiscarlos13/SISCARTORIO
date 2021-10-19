@@ -1,0 +1,8 @@
+<div class="card">
+	<div class="card-header">
+		<b>Capitulação</b>
+	</div>
+	<% @capitulations.each do |f| %>
+	Art: <%= "#{f.article} - " %><%=  f.paragraph.blank? ? '' : "§: #{f.paragraph}," %><%=  f.subsection.blank? ? '' : " Inciso(s): #{f.subsection}," %><%=  f.lines.blank? ? '' : " Alinea(s): #{f.lines}" %> <%= " da #{f.law.name}" %><br>
+	<% end %>
+</div>

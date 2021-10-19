@@ -1,0 +1,48 @@
+<style>
+tr:nth-child(even) {
+	background-color: #f2f2f2
+}
+
+</style>
+
+
+<div align="center" style="font-weight: bold">
+	RELAÇÃO DE TERMO CIRCUNSTÂNCIADO DE OCORRÊNCIA
+</div>
+<br>
+<table>
+	<thead>
+		<tr>
+			<th>Nº</th>
+			<th>Data Reg.</th>
+			<th>Origem</th>
+			<th>Cidade</th>
+			<th>Providência</th>
+			<th>Concluso</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @tcos.sort_by(&:establishment).each do |f| %>
+		<tr>
+			<td><%= "#{f.dp} - #{f.n.to_s.rjust(3, '0')}/ #{f.year.year}" %></td>
+			<td><%= date(f.establishment) %></td>
+			<td><%= "#{f.tipo}" '-' "#{f.documento}" %></td>
+			<td><%= f.city.nome %></td>
+			<td><%= f.providenca %></td>
+			<td><%= i18n_yes(f.conclusion) %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+<div class="page-break"></div>
+
+<div align="center" style="font-weight: bold">
+	RESUMO
+</div>
+<hr>
+
+<strong>Total TCOs:</strong> <%= @tcos.count %> <br>
+<strong>Total Arquivado:</strong> <%= @tcos.where(providenca: 'ARQUIVADO').count %> <br>
+<strong>Total Convertido:</strong> <%= @tcos.where(providenca: 'CONVERTIDO').count %> <br>
+<strong>Total Transferido:</strong> <%= @tcos.where(providenca: 'TRANSFERIDO').count %> <br>
+<strong>Total Em Andamento:</strong> <%= @tcos.where(providenca: 'EM ANDAMENTO').count %> <br>

@@ -1,0 +1,20 @@
+	<div class="card">
+		<div class="card-header">
+			<b>Envonvidos</b>
+		</div>
+		<%= simple_form_for([@inquery, @inquery.involveds.build]) do |f| %>
+		
+		<div class="row">
+			<div class="col-2">
+				<%= f.input :typeinvolved, as: :radio_buttons, collection: @typeinvolveds ,label: false %>
+			</div>
+			<div class="col-8">
+				<%= f.association :person, label: false %>
+			</div>
+			<div class="col-1">
+				<%= button_tag '', class: 'btn btn-primary fa fa-floppy-o' %>
+			</div>
+		</div>
+		<% end %>
+		<%= render 'involveds/index' %>
+	</div>

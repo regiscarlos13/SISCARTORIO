@@ -1,0 +1,95 @@
+<div align="center">
+	<font style="font-size: 20px" ><b> Relação de Inqueritos</b></font> <br>
+
+	<% unless params[:start].blank? or params[:end].blank? %>
+	<font style="font-size: 15px; font-weight: bold;" ><%= date((params[:start]).to_date) %> 	até <%= date((params[:end]).to_date) %></font>	
+	<% end %>
+	
+	<% unless params[:conclusion].blank? %>
+	<% if params[:conclusion].to_i == 1 %>
+	<font style="font-size: 15px; font-weight: bold;" >Concluidos</font>	
+	<% else %>
+	<font style="font-size: 15px; font-weight: bold;" >Não Concluidos</font>	
+	<% end %>
+	<% end %>
+
+	<% unless params[:year].blank? %>
+	<font style="font-size: 20px" ><b><%= params[:year] %></b></font>
+	<% end %>
+
+
+	<% unless params[:reported].blank? %>
+	<% if params[:reported].to_i == 1 %>
+	<font style="font-size: 15px; font-weight: bold;" >Relatados</font>	
+	<% else %>
+	<font style="font-size: 15px; font-weight: bold;" >Não Relatados</font>	
+	<% end %>
+	<% end %>
+
+</div>
+<br>
+
+
+
+
+
+
+
+
+<table>
+	<thead>
+		<tr>
+			<th>Tipo</th>
+			<th>IP Nº</th>
+			<th>Tombado</th>
+			<th>Cidade</th>
+			<th>Relatado</th>
+			<th>Tempo</th>
+			<th>Origem</th>
+		</tr>
+	</thead>
+	<% @inqueries.sort_by(&:establishment).each do |f| %>
+	<tbody>
+		<tr> 
+			<td><%= f.tp %></td>
+			<td><%= "#{f.dp} - #{f.n.to_s.rjust(3, '0')}/ #{f.year.year}" %></td>
+			<td><%= date(f.establishment) %></td>
+			<td><%= f.city.nome %></td>
+			<td><%= f.reported_date.blank? ? 'Não' : date(f.reported_date) %></td>
+			<%#= f.reported_date.blank? ? '-' : i18n_yes(f.indiciado)  %>
+			<td><%= f.conclusion.blank? ? time_ago_in_words(f.establishment) : '-' %></td>
+			<td><%= f.print_tipos %> </td>
+
+		</tr>
+		<% end %>
+
+	</tbody>
+</table>
+
+<br>
+<hr>
+<p>Total Inqueritos:<font style=" font-weight: :bold"> <%= @inqueries.count.to_s.rjust(2, '0') %></font></p>
+
+
+<p>Total IP Portaria:<font style=" font-weight: :bold"> <%= @inqueries.where(tp: 0).count.to_s.rjust(2, '0') %></font><br>
+Total IP Flagrante:<font style=" font-weight: :bold"> <%= @inqueries.where(tp: 1).count.to_s.rjust(2, '0') %></font><br></p>
+
+<p>Total IP Apreensão:<font style=" font-weight: :bold"> <%= @inqueries.where(seizure: 1).count.to_s.rjust(2, '0') %></font><br>
+Total IP Sem Apreensão:<font style=" font-weight: :bold"> <%= @inqueries.where(seizure: 0).count.to_s.rjust(2, '0') %></font><br></p>
+<p>Total IP Relatados:<font style=" font-weight: :bold"> <%= @inqueries.where(reported: 1).count.to_s.rjust(2, '0') %></font><br>
+Total IP Sem Relatar:<font style=" font-weight: :bold"> <%= @inqueries.where(reported: 0).count.to_s.rjust(2, '0') %></font></p>
+
+
+<p>IP Indiciados:<font style=" font-weight: :bold"> <%= @inqueries.where(reported: 1).where(indiciado: 1).count.to_s.rjust(2, '0') %></font><br>
+IP sem Indiciados:<font style=" font-weight: :bold"> <%= @inqueries.where(reported: 1).where(indiciado: 0).count.to_s.rjust(2, '0') %></font></p>
+
+
+
+
+
+<p>Total IP Concluído:<font style=" font-weight: :bold"> <%= @inqueries.where(conclusion: 1).count.to_s.rjust(2, '0') %></font><br>
+Total IP Sem Concluir:<font style=" font-weight: :bold"> <%= @inqueries.where(conclusion: 0).count.to_s.rjust(2, '0') %></font></p>
+
+
+
+

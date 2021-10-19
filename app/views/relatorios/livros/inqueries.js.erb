@@ -1,0 +1,4 @@
+<% @route = relatorios_livros_inqueries_path(format: :pdf) %>
+$('#exampleModalCenter').modal('show');
+$('#relatorios').html('<%=j render 'relatorios/livros/shared/form_filter_related' %>');
+

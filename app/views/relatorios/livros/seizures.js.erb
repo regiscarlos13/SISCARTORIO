@@ -1,0 +1,3 @@
+<% @route = relatorios_livros_seizures_path(format: :pdf) %>
+$('#exampleModalCenter').modal('show');
+$('#relatorios').html('<%=j render 'relatorios/livros/shared/form_filter_related' %>');

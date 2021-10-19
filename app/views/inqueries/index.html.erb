@@ -1,0 +1,29 @@
+<%= index_table_javascript %>
+<%= index_table_style %>
+
+<% @title_painel = "Relação de #{@inqueries.model_name.human(count: 2)}" %>
+<% @btn_new = btn_new(new_inquery_path) %>
+
+<% @btn_imprimir = link_to "", inqueries_path(@inqueries, format: :pdf, conclusion: params[:conclusion], year: params[:year], reported: params[:reported], start: params[:start], end: params[:end], origem: params[:origem] ), target: "_blank", class: 'btn btn-warning float-right fa fa-print  mr-2' %>
+
+<%= render partial: 'inqueries/shared/filter' %>
+
+<div class="table-responsive">
+  <%= table_for(@inqueries, 'index') do %>
+  <% field_table(@inqueries.model.human_attribute_name('dp'))  { |f| "#{f.dp} - #{f.n.to_s.rjust(3, '0')}/ #{f.year.year}"  } %>
+  <% field_table(@inqueries.model.human_attribute_name('establishment'))  { |f| date(f.establishment) } %>
+  <% field_table(@inqueries.model.human_attribute_name('seizure'))  { |f| i18n_yes(f.seizure) } %>
+  <% field_table(@inqueries.model.human_attribute_name('tp'))  { |f| field_tp(f.tp) } %>
+
+  <% field_table(@inqueries.model.human_attribute_name('reported'))  { |f| i18n_yes(f.reported) } %>
+
+  <% field_table(@inqueries.model.human_attribute_name('reported_date'))  { |f|  date_or_blank(f.reported_date) } %>
+  <% field_table(@inqueries.model.human_attribute_name('conclusion'))  { |f| i18n_yes(f.conclusion) } %>
+  <% field_table('Tempo')  { |f| f.conclusion.blank? ? time_ago_in_words(f.establishment) : '-'} %>
+
+  <% btn_for %>
+  <% field_table('')  { |f| link_to '', inquery_path(f, format: :pdf), target: "_blank", class: 'btn btn-warning fa fa-print '} %>
+  
+
+  <% end %>
+</div>

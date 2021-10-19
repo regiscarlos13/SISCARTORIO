@@ -1,0 +1,30 @@
+<%= index_table_javascript %>
+<%= index_table_style %>
+
+<% @title_painel = "Relação de #{@seizures.model_name.human(count: 2)} de procedimentos não concluidos" %>
+<% @btn_new = btn_new(new_seizure_path) %>
+
+<div class="table-responsive">
+  <%= table_for(@seizures, 'index') do %>
+
+	     	<% field_table(@seizures.model.human_attribute_name('procedimento'))  { |f| if f.procedimento == 'IP'  then "#{f.procedimento}: #{f.inquery.dp} - #{f.inquery.n.to_s.rjust(3, '0')}/ #{f.inquery.year.year}" 
+                elsif f.procedimento == 'Tco'  then "#{f.procedimento}: #{f.tco.dp} - #{f.tco.n.to_s.rjust(3, '0')}/ #{f.tco.year.year}" 
+                elsif f.procedimento == 'Boc' then "#{f.procedimento}: #{f.boc.dp} - #{f.boc.n.to_s.rjust(3, '0')}/ #{f.boc.year.year}" 
+                elsif f.procedimento == 'Boc' then "#{f.procedimento}: #{f.bo.dp} - #{f.bo.n.to_s.rjust(3, '0')}/ #{f.bo.year.year}" 
+
+
+                end} %>
+  
+
+        	<% field_table(@seizures.model.human_attribute_name('name'))  { |f| f.name } %>
+        	<% field_table(@seizures.model.human_attribute_name('destino'))  { |f| f.destino } %>
+        	<% field_table(@seizures.model.human_attribute_name('doc'))  { |f| f.doc } %>
+        	<% field_table(@seizures.model.human_attribute_name('data'))  { |f| date(f.data) } %>
+        	<% field_table(@seizures.model.human_attribute_name('veiculo'))  { |f| i18n_yes(f.veiculo) } %>
+        	<% field_table(@seizures.model.human_attribute_name('tipo'))  { |f| f.tipo_veiculo } %>
+        	<% field_table(@seizures.model.human_attribute_name('cor'))  { |f| f.cor } %>
+        	<% field_table(@seizures.model.human_attribute_name('placa'))  { |f| f.placa } %>
+        	<% field_table(@seizures.model.human_attribute_name('chassi'))  { |f| f.chassi } %>
+         <% btn_for %>
+  <% end %>
+</div>

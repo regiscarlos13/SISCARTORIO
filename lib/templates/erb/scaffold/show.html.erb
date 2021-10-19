@@ -1,0 +1,17 @@
+<%% @card_title = "Listagem da #{@<%= singular_table_name %>.model_name.human(count: 1)}" %>
+
+<% attributes.reject(&:password_digest?).each do |attribute| -%>
+<p>
+  <strong><%%= translate 'activerecord.attributes.<%= singular_table_name %>.<%= attribute.name %>' %>:</strong>
+  <%%= @<%= singular_table_name %>.<%= attribute.name %> %>
+</p>
+
+
+<% end -%>
+
+<div class="actions">
+
+<%%= btn_edit(edit_<%=singular_table_name%>_path(@<%=singular_table_name%>)) %> | 
+<%%= btn_back(<%= plural_table_name %>_path) %>
+</div>
+

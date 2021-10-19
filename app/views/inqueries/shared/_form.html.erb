@@ -1,0 +1,114 @@
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#inquery_city_id').select2({minimumInputLength: 3});
+  });
+</script>
+<%= javascript_include_tag "inqueries" %>
+
+<div align="center">
+  <div class="form justify-content-center col-8">
+    <div class="jumbotron">
+      <%= simple_form_for(@inquery) do |f| %>
+      <%= error_messages_for(@inquery) %>
+
+      <div class="form-row">
+        <div class="col row">
+
+          <% if action_name == 'new' %>
+          <%= f.input :dp, :input_html => {style: 'width: 65px', value: current_user.registry.dp},label: '' %>
+          <% else %>
+          <%= f.input :dp, :input_html => {style: 'width: 65px'},label: ' ' %>
+          <% end %>
+
+          <div class="form-group">
+           <%= f.input :n, :input_html => {class: 'form-control', style: 'width: 75px' },label: 'Nº IP' %>
+         </div>
+         <%= f.input :year, as: :date, discard_month: true, discard_day: true, input_html: { class: 'form-control form-control-sm' }, label: '' %>
+       </div>
+       <div class="col">
+        <%= f.input :establishment, as: :date, html5: true, input_html: { class: 'form-control form-control-sm ' }, label: 'Tombado em:' %>
+      </div>
+      <div class="col">
+        <%= f.input :city_id, label_method: :find_city, collection: @cities, label: 'Local da Ocorrência:'  %>
+      </div>
+    </div>
+
+
+    <div class="form-row" align="left">
+      <div class="col">
+        <%= f.input :tp, as: :radio_buttons, collection: @tps %> 
+        
+      </div>
+      <div class="col">
+        <div id="origem">
+          <%= f.input :origem, collection: @origems, as: :radio_buttons %>
+        </div>
+      </div>
+      <div class="col" id="tipo">
+        <%= f.input :tipo, collection: @tipos, as: :radio_buttons %>
+      </div>
+      <div class="col" id="documento">
+        <%= f.input :documento %>
+      </div>
+      <div class="col" id="bo" >
+        <%= f.association :bo, label_method: :n, label: 'Bo', input_html: { style: 'width: 100%' } %>
+      </div>
+      <div class="col" id="boc" >
+        <%= f.association :boc, label_method: :find_boc, label: 'Boc', input_html: { style: 'width: 100%' } %>
+
+      </div>
+      <div class="col" id="tco" >
+        <%= f.association :tco, label_method: :find_tco, label: 'Tco', input_html: { style: 'width: 100%' } %>
+        
+      </div>
+
+      <div class="col" id="comp" ></div>
+      <div class="col" id="comp1" ></div>
+
+
+    </div>
+
+    <div class="form-inline">
+      <%= f.input :seizure %>  &nbsp; &nbsp; &nbsp;
+      <%= f.input :conclusion %> &nbsp; &nbsp; &nbsp;
+      <%= f.input :reported, label: 'Relatado: ' %>  &nbsp;
+      <%= f.input :reported_date, as: :date, html5: true, input_html: { class: 'form-control form-control-sm' }, label: false %>&nbsp; &nbsp; &nbsp;
+      <div id="indiciado">
+        <%= f.input :indiciado %> 
+      </div>
+    </div>
+
+    <hr>
+    <div id="capitulations">
+      <%= f.simple_fields_for(:capitulations) do |ff| %>
+
+      <%= render partial: "capitulation_fields", locals: { f: ff } %>
+
+      <% end %>
+      <div class="field">
+        <%= link_to_add_association('[Adicionar Capitulação]', f, :capitulations) %>
+      </div>
+    </div>
+
+    <hr>
+    
+    <%= btn_save %>
+    <%= btn_cancel(inqueries_path) %>
+    <% end %>
+
+
+  </div>
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+

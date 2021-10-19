@@ -1,0 +1,37 @@
+<p class="ex1" align="center" style="font-size: 20px; font-weight: bold;">CARTA PRECATÓRIA Nº <%= @precatory.n.to_s.rjust(3, '0') %>/<%= @precatory.year.year %></p>
+<br>
+<p class="font-12">  <b> DEPRECANTE:</b>  <%= current_user.registry.name %> </p>
+<p class="font-12">  <b>DEPRECADO:</b> <%= @precatory.registry.name %> </p>
+<p class="font-12">  <b>Nº PROCEDIMENTO:</b> IP: <%= @precatory.inquery.dp %>-<%= @precatory.inquery.n.to_s.rjust(3, '0') %>/<%= @precatory.year.year %></p>
+
+<% @a = @capitulations.map { |f| "#{f.article} -" "#{f.paragraph.blank? ? '' : ' §: ' + f.paragraph + ','}" 	"#{f.subsection.blank? ? '' :  ' Inciso(s): ' + f.subsection }" "#{f.lines.blank? ? '' :  ' Alinea(s): ' + f.lines}" " da #{f.law} " } %>
+<p class="font-12"><b>INCIDÊNCIA PENAL:</b> Art(s): <%= @a.join(", ") %> </p>
+
+<p class="font-12"><b>IMPUTADO(S):</b> <%= " #{ if @involveds_indiciados.blank? then 'A IDENTIFICAR' elsif @involveds_indiciados.ids.count == 1 then @involveds_indiciados[0].person.name else @involveds_indiciados[0].person.name + ' E OUTROS' end}" %> </p>
+
+<p class="font-12"><b>VÍTIMA(S):</b> <%= "#{if @involveds_vitimas.blank? then 'A IDENTIFICAR' elsif @involveds_vitimas.ids.count == 1 then @involveds_vitimas[0].person.name else @involveds_vitimas[0].person.name + ' E OUTROS'
+end}" %></p>
+
+<p class="paragraph"> O(A) Bel(a) <%= @precatory.server.name %>, delegado(a) de Policia Civil, <b>FAZ SABER QUE:</b> tramita nesta DPC o procedimento em epígrafe, que apura o crime subra indicado, em razão do que <b>DEPRECA</b> a V. Execelência que se digne em determinar, após exarado seu respeitável <b>CUMPRA-SE</b>, a seguinte providência: empreender esforços para localizar e ouvir, em Termo de Declarações, o(a) <b> Sr.(a)<%= @precatory.name %>, residente no(a) <%= @precatory.address %>, <%= @precatory.bairro %>, na cidade de <%= @precatory.city.find_city %></b>, para que o(a) mesmo(a) responda as indagações abaixo: </p>
+
+<br>
+
+<% @qtd = 0 %>
+
+<% @questions.each do |f| %>
+	<p class="font-12"> <%= @qtd = @qtd + 1 %> - <%= f.question.capitalize %>?</p>
+<% end %>
+<br>
+<p class="font-12"><b>ASSIM O DEPRECO</b> </p>
+<br>
+<div align="right">
+	 <p class="font-12"> Solonóple-CE, <%= (I18n.l @precatory.year, :format => :long ) %></p>
+</div>
+<br><br><br>
+
+<div align="center">
+<font style="text-decoration: overline; font-size: 20px"><%= @precatory.server.name %></font><br>
+	<font style="font-size: 20px">Delegado(a) de Polícia Civil</font> <br>	
+	<font style="font-size: 20px"><%= @precatory.server.registration %></font>
+	
+</div>

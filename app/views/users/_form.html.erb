@@ -1,0 +1,52 @@
+<script type="text/javascript">
+	$(document).ready(function () { 
+		$("#user_cpf").mask('000.000.000-00');
+	});
+</script>
+
+<%= select2('#user_role') %>
+<%= select2('#user_registry_id') %>
+
+<%= simple_form_for(@user) do |f| %>
+<%= error_messages_for(@user) %>
+
+
+<div class="form-row justify-content-center">
+	<div class="col-sm-12 col-md-10 col-lg-8">
+
+		<div class="row">
+			<div class="col-3">
+				<%= f.input :cpf, placeholder: 'XXX.XXX.XXX-XX'%>
+			</div>
+			<div class="col-5">
+				<%= f.input :name %>
+			</div>
+			<div class="col">
+				<%= f.input :role, collection: @roles, prompt: false %>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col">
+				<%= f.association :registry, prompt: false %>
+			</div>
+			
+		</div>
+
+		<div class="row">
+			<div class="col-5">
+				<%= f.input :email %>
+			</div>
+			<div class="col">
+				<%= f.input :password, placeholder:"Senha"%>
+			</div>
+			<div class="col">
+				<%= f.input :password_confirmation, placeholder:"Confirmação da senha" %>
+			</div>
+		</div>
+		<hr>
+		<%= btn_save %>
+		<%= btn_cancel(users_path) %>
+	</div>
+</div>
+<% end %>

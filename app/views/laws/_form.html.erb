@@ -1,0 +1,13 @@
+
+<%= simple_form_for(@law) do |f| %>
+	<%= error_messages_for(@law) %>
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :ativo %>
+  </div>
+
+  <div class="form-actions">
+<%= btn_save %>
+<%= btn_cancel(laws_path) %>
+  </div>
+<% end %>

@@ -1,0 +1,30 @@
+<div class="nested-fields card mb-3">
+  <div class="card-header">Capitulação:   <%= link_to_remove_association('Remover', f)%> </div> 
+  <div class="field card-body">
+    <div class="row">
+  
+    <div class="col-4">
+      
+      <%= f.association :law %>
+    </div>
+
+      <div class="col-2">
+        <%= f.input :article %>
+      </div>
+      <div class="col-2">
+        <%= f.input :paragraph %>
+      </div>
+      <div class="col-2">
+        <%= f.input :subsection %>
+      </div>
+      <div class="col-2">
+        <%= f.input :lines %>
+
+      </div>
+
+    </div>
+
+
+  </div>
+</div>
+    

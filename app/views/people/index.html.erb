@@ -1,0 +1,18 @@
+<%= index_table_javascript %>
+<%= index_table_style %>
+
+<% @title_painel = "Relação de #{@people.model_name.human(count: 2)}" %>
+<% @btn_new = btn_new(new_person_path) %>
+
+
+<div class="table-responsive">
+  <%= table_for(@people, 'index') do %>
+        	<% field_table(@people.model.human_attribute_name('cpf'))  { |f| formated_cpf(f.cpf) } %>
+        	<% field_table(@people.model.human_attribute_name('rg'))  { |f| f.rg } %>
+	     	<% field_table(@people.model.human_attribute_name('name'))  { |f| f.name } %>
+        	<%# field_table(@people.model.human_attribute_name('father'))  { |f| f.father } %>
+        	<% field_table(@people.model.human_attribute_name('mother'))  { |f| f.mother } %>
+        	<%# field_table(@people.model.human_attribute_name('phone'))  { |f| f.phone } %>
+         <% btn_for %>
+  <% end %>
+</div>

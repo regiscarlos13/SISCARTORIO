@@ -1,0 +1,60 @@
+<%= stylesheet_link_tag 'util' %>
+<%= stylesheet_link_tag 'main' %>
+
+
+<div class="limiter">
+    <div class="container-login100">
+      <div class="wrap-login100">
+        <div class="login100-form-title" style="background-image: url(<%#=  asset_path 'logo.png'%>);">
+          <span class="login100-form-title-1">
+            SISTEMA DE ESCRITURAÇÃO POLICIAL CARTORÁRIA - SISEPC
+          </span>
+        </div>
+
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "login100-form validate-form"}) do |f| %>
+          <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+            <span class="label-input100">Usuário</span>
+          
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"Entre Usuário", class: "input100" %>
+            <span class="focus-input100"></span>
+          
+          </div>
+
+          <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
+            <span class="label-input100">Senha</span>
+              <%= f.password_field :password, autocomplete: "current-password", placeholder:"Entre Senha", class: "input100" %>
+          
+            <span class="focus-input100"></span>
+          </div>
+
+          <div class="flex-sb-m w-full p-b-30">
+            <div class="contact100-form-checkbox">
+
+            <% if devise_mapping.rememberable? -%>
+                <%= f.check_box :remember_me, class: "input-checkbox100" %>
+            <% end -%>
+              <label class="label-checkbox100" for="ckb1">
+                Lembre me
+              </label>
+            
+
+            </div>
+
+            <div>
+              <a href="#" class="txt1">
+                Esqueceu a Senha?
+              </a>
+            </div>
+          </div>
+
+          <div class="container-login100-form-btn">
+            <%= f.submit "Login", class: "login100-form-btn" %>
+          </div>
+
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+
+

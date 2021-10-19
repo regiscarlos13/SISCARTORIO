@@ -1,0 +1,48 @@
+<script type="text/javascript">
+  $(document).ready(function () { 
+    $("#person_cpf").mask('000.000.000-00');
+    $("#person_phone").mask('(00)00000-0000');
+
+  });
+</script>
+
+<%= simple_form_for(@person) do |f| %>
+<%= error_messages_for(@person) %>
+
+<div class="form-row justify-content-center  ">
+  <div class="col-sm-12 col-md-10 col-lg-8 border">
+    <div class="form_group">
+      <div class="row">
+        <div class="col-3">
+          <%= f.input :cpf, placeholder: 'XXX.XXX.XXX.XXX'%>
+        </div>
+        <div class="col-3">
+          <%= f.input :rg,  placeholder: 'Identidade', input_html: {  style: 'text-transform:uppercase'}  %>
+        </div>
+        <div class="col-6">
+          <%= f.input :name, placeholder: 'Nome Completo', input_html: {  style: 'text-transform:uppercase'}  %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4">
+          <%= f.input :mother,  placeholder: 'Nome da mãe', input_html: {  style: 'text-transform:uppercase'}  %>
+        </div>
+        <div class="col-4">
+          <%= f.input :father, placeholder: 'Nome do Pai', input_html: {  style: 'text-transform:uppercase'}  %>
+
+        </div>
+        <div class="col-3">
+          <%= f.input :phone,  placeholder: '(00) 0 0000-0000' %>
+        </div>
+      </div>
+      <div class="mb-2 " align="center">
+        <hr>
+        <%= btn_save %>
+        <%= btn_cancel(people_path) %>
+      </div>
+
+    </div>
+  </div>  
+</div>
+
+<% end %>

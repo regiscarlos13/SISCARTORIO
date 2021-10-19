@@ -1,0 +1,15 @@
+<% if  @seizures.first.blank? %>
+
+<h1><strong>SEM APREENSSÕES CADASTRADAS</strong></h1>
+
+<% else %>
+
+<h1>FAZER DESIGN LIVRO</h1>
+
+<% @seizures.each do |f| %>
+
+<%= f.id %>
+<% end %>
+
+
+<% end %>

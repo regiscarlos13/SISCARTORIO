@@ -1,0 +1,29 @@
+<%= select2('#origem') %>
+<%= select2('#conclusion') %>
+<%= select2('#reported') %>
+
+<div class="row border mb-3" align="center">
+  <div class="ml-3">
+    <%= form_tag( inqueries_path , method: "get") do %>
+    <b>Convertidos:</b>
+    <%= select_tag :origem, options_for_select([ ['-----', ''],['Convertidos', 0], ['Requisição', 1]], params[:origem]) %> 
+
+    <b>Conclusos:</b>
+    <%= select_tag :conclusion, options_for_select([ ['-----', ''],['Sim', 1], ['Não', 0]], params[:conclusion]) %> 
+    <b>Relatados:</b>
+    <%= select_tag :reported  , options_for_select([ ['-----', ''] ,['Sim', 1], ['Não', 0]], params[:reported]) %>
+
+    <b>Ano:</b>
+    <%= text_field_tag :year, params[:year], size: 8 %>
+    
+
+    <b>Filtra por Data:</b>
+    <%= date_field_tag :start, params[:start] %> <b>até</b>
+    <%= date_field_tag :end, params[:end] %>
+
+    <%= button_tag(type: 'submit', class: 'btn btn-primary fa fa-search', id: 'button_banco', name: nil) do %>
+    <% end %>
+    <% end %>     
+</div>
+</div>
+

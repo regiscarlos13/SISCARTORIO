@@ -1,0 +1,18 @@
+<%= index_table_javascript %>
+<%= index_table_style %>
+
+<% @title_painel = "Relação de #{@joins.model_name.human(count: 2)}" %>
+<% @btn_new = btn_new(new_join_path) %>
+
+<div class="table-responsive">
+	<%= table_for(@joins, 'index') do %>
+	<% field_table(@joins.model.human_attribute_name('date'))  { |f| date(f.date) } %>
+	<% field_table(@joins.model.human_attribute_name('inquery'))  { |f| "#{f.inquery.dp} - #{f.inquery.n.to_s.rjust(3, '0')}/ #{f.inquery.year.year}"  } %>
+	<% field_table(@joins.model.human_attribute_name('Escrivã(o)'))  { |f| f.server.name } %>
+	<% btn_for %>
+	<% field_table('')  { |f| link_to '', join_path(f, format: :pdf), target: "_blank", class: 'btn btn-warning fa fa-print '} %>
+
+
+	<% end %>
+</div>
+

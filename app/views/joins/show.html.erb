@@ -1,0 +1,21 @@
+<% @title_painel = "Listagem da #{@join.model_name.human(count: 1)}" %>
+
+<p>
+  <strong>DATA:</strong> <br>
+Aos <b><%= I18n.l @join.date, :format => :long %></b>, recebi o IP nº <b><%= @join.inquery.dp %>-<%= @join.inquery.n.to_s.rjust(3, '0') %>/<%= @join.inquery.year.year  %> </b> para providências, do que para constar lavro este termo. Eu <b><%= @join.server.name %></b>, Escrivã(o) de Polícia o digitei e assino.
+
+</p>
+
+<p>
+  <strong>Inquery:</strong>
+  
+</p>
+
+
+<%= link_to edit_join_path(@join), class: 'btn btn-primary', title: 'Alterar Dados' do %> 
+<i class="glyphicon glyphicon-pencil"> Alterar</i> 
+<% end %>
+&nbsp;
+<%= link_to joins_path, class: "btn btn-warning", title: "Voltar para Pagina Inicial" do %>
+<i class="glyphicon glyphicon-arrow-left"> Voltar</i> 
+<% end %>

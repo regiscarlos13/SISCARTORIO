@@ -1,0 +1,35 @@
+<% @title_painel = "Listagem da #{@registry.model_name.human(count: 1)}" %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @registry.name %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @registry.address %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @registry.phone %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @registry.email %>
+</p>
+
+<p>
+  <strong>Active:</strong>
+  <%= @registry.active %>
+</p>
+
+
+<%= link_to edit_registry_path(@registry), class: 'btn btn-primary', title: 'Alterar Dados' do %> 
+<i class="glyphicon glyphicon-pencil"> Alterar</i> 
+<% end %>
+&nbsp;
+<%= link_to registries_path, class: "btn btn-warning", title: "Voltar para Pagina Inicial" do %>
+<i class="glyphicon glyphicon-arrow-left"> Voltar</i> 
+<% end %>

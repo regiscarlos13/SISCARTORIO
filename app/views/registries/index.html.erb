@@ -1,0 +1,17 @@
+<%= index_table_javascript %>
+<%= index_table_style %>
+
+<% @title_painel = "Relação de #{@registries.model_name.human(count: 2)}" %>
+<% @btn_new = btn_new(new_registry_path) %>
+
+<div class="table-responsive">
+  <%= table_for(@registries, 'index') do %>
+	     	<% field_table(@registries.model.human_attribute_name('dp'))  { |f| f.dp } %>
+	     	<% field_table(@registries.model.human_attribute_name('name'))  { |f| f.name } %>
+        	<% field_table(@registries.model.human_attribute_name('address'))  { |f| f.address } %>
+        	<% field_table(@registries.model.human_attribute_name('phone'))  { |f| f.phone } %>
+        	<% field_table(@registries.model.human_attribute_name('email'))  { |f| f.email } %>
+        	<% field_table(@registries.model.human_attribute_name('active'))  { |f| situation(f.active) } %>
+         <% btn_for %>
+  <% end %>
+</div>

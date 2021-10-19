@@ -1,0 +1,15 @@
+<% @title_painel = "Listagem da #{@law.model_name.human(count: 1)}" %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @law.name %>
+</p>
+
+
+<%= link_to edit_law_path(@law), class: 'btn btn-primary', title: 'Alterar Dados' do %> 
+<i class="glyphicon glyphicon-pencil"> Alterar</i> 
+<% end %>
+&nbsp;
+<%= link_to laws_path, class: "btn btn-warning", title: "Voltar para Pagina Inicial" do %>
+<i class="glyphicon glyphicon-arrow-left"> Voltar</i> 
+<% end %>

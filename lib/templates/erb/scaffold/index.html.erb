@@ -1,0 +1,11 @@
+<%% @card_title = "Relação de #{@<%= plural_table_name %>.model_name.human(count: 2)}" %>
+<%% @btn_new = btn_new(new_<%= singular_table_name %>_path) %>
+
+<div class="table-responsive">
+  <%%= table_for(@<%= plural_table_name %>, 'index') do %>
+	 <% attributes.reject(&:password_digest?).each do |attribute| -%>
+    	<%% field_table(@<%= plural_table_name %>.model.human_attribute_name('<%= attribute.name %>'))  { |f| f.<%= attribute.name %> } %>
+    <% end -%>
+     <%% btn_form %>
+  <%% end %>
+</div>

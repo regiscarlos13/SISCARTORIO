@@ -1,0 +1,15 @@
+.container {
+	position: relative;
+}
+
+.junto {
+	position: absolute;
+	top: 0%;
+}
+.img-fundo {
+	width: 90%;
+	height: auto;
+	opacity: 0.3;
+	margin-left: 40px;
+	margin-top: 30px;
+}

@@ -1,0 +1,50 @@
+<%= select2('#bo_nature_id') %>
+<%= select2('#bo_providenca') %>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#bo_city_id').select2({minimumInputLength: 3});
+    $("#bo_n").mask('000-0000/0000');
+  });
+</script>
+
+
+<div align="center">
+<div class="form justify-content-center col-8">
+  <div class="jumbotron">
+      <%= simple_form_for (@bo)  do |f| %>
+        <%= error_messages_for(@bo) %>
+        <div class="row">
+          <div class="col">
+            <%= f.input :n, placeholder: '000-0000/0000' %>
+          </div>
+          <div class="col">
+           <%= f.input :ocorrencia, as: :date, html5: true, input_html: { class: 'form-control form-control-sm' }, label: 'Ocorrência' %>
+
+         </div>
+         <div class="col">
+         <%= f.input :fato, as: :date, html5: true, input_html: { class: 'form-control form-control-sm' }, label: 'Comunicação' %>
+         </div>
+       </div>
+
+       <div class="row">
+        <div class="col">
+        <%= f.association :nature, label: 'Natureza' %>
+       </div>
+       <div class="col">
+        <%= f.association :city, label_method: :find_city, collection: @cities, label: 'Local da Ocorrência:'%>
+      </div>
+    </div>
+      <div class="form-check form-check-inline">
+        <%= f.input :providenca, collection: @providencas, prompt: false, label: 'Situação', as: :radio_buttons, item_wrapper_class: 'custom-control-inline form-check-input' %>
+      </div>
+    <hr>
+    <div align="center" class="mt-4">
+      <%= btn_save %>
+      <%= btn_cancel(bos_path) %>
+
+    </div>
+
+    <% end %>
+  </div>
+</div>
+</div>

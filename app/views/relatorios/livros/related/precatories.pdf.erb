@@ -1,0 +1,47 @@
+<% if @precatories.first.blank? %>
+
+<h1><strong>SEM PRECATÓRIAS CADASTRADAS</strong></h1>
+
+<% else %>
+
+<% @year = @precatories.first.year.year %>
+<% @livro = 'PRECATÓRIAS' %>
+<% @start_tombo = @precatories.first.n.to_s.rjust(3, '0')  %>
+<% @end_tombo = @precatories.last.n.to_s.rjust(3, '0')  %>
+
+<% @name_termo = 'LIVRO DE REGISTRO DE CARTAS PRECATÓRIAS EXPEDIDAS' %>
+
+<% @first_id = @precatories.first.year %>
+<% @end_id = @precatories.last.year %>
+
+
+
+<%= render partial: 'relatorios/livros/shared/capa' %>
+<%= render partial: 'relatorios/livros/shared/termo_abertura' %>
+	
+
+
+		<table style="font-size: 16px; line-height: 35px;">
+			<tbody>
+				<% @precatories.sort.each do |f| %>
+				<tr>
+					<td>
+					<b>Precatória Nº:</b> <%= " #{f.n.to_s.rjust(3, '0')}/#{f.year.year}" %>
+					<b style="margin-left: 50px">Data:</b> <%= date(f.year) %> 
+					<b style="margin-left: 50px">Procedimento:</b> <%= f.inquery_id == 35 ? f.ipantigo : "#{f.inquery.dp} - #{f.inquery.n.to_s.rjust(3, '0')}/ #{f.inquery.year.year}"  %>
+					<br>
+					<b>Delegado(a):</b> <%= f.server.name %> <br>
+					<b>Deprecada:</b> <%= f.registry.name %> <br>
+					<b>Nome:</b> <%= f.name %>  <br>
+					<b>Endereço:</b> <%= f.address %> <b style="margin-left: 50px">Bairro:</b> <%= f.bairro %>
+					<b style="margin-left: 50px">Cidade:</b> <%= "#{f.city.nome.upcase!}/#{f.city.uf}" %> <br>
+					<b>Cumprida:</b> <%= i18n_yes(f.conclusion) %> - <%= f.conclusion_date.blank? ? '' : date(f.conclusion_date) %>
+
+					</td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+
+<%= render partial: 'relatorios/livros/shared/termo_encerramento' %>
+<% end %>

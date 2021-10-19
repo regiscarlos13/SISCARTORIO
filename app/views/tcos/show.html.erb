@@ -1,0 +1,45 @@
+<% @title_painel = "Listagem da #{@tco.model_name.human(count: 1)}" %>
+
+<p>
+  <strong>Dp:</strong>
+  <%= @tco.dp %>
+</p>
+
+<p>
+  <strong>N:</strong>
+  <%= @tco.n %>
+</p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @tco.year %>
+</p>
+
+<p>
+  <strong>Establishment:</strong>
+  <%= @tco.establishment %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @tco.city %>
+</p>
+
+<p>
+  <strong>Registry:</strong>
+  <%= @tco.registry %>
+</p>
+
+<p>
+  <strong>Conclusion:</strong>
+  <%= @tco.conclusion %>
+</p>
+
+
+<%= link_to edit_tco_path(@tco), class: 'btn btn-primary', title: 'Alterar Dados' do %> 
+<i class="glyphicon glyphicon-pencil"> Alterar</i> 
+<% end %>
+&nbsp;
+<%= link_to tcos_path, class: "btn btn-warning", title: "Voltar para Pagina Inicial" do %>
+<i class="glyphicon glyphicon-arrow-left"> Voltar</i> 
+<% end %>

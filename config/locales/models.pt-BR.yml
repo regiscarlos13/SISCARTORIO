@@ -1,0 +1,135 @@
+'pt-BR':
+    activerecord:
+        models:
+            registry:
+                one: Delegacia
+                other: Delegacias
+            person:
+                one: Pessoa
+                other: Pessoas
+            user:
+                one: Usuário
+                other: Usuário
+            inquery:
+                one: Inquérito
+                other: Inquéritos
+            join:
+                one: Juntada
+                other: Juntadas
+            server:
+                one: Servidor
+                other: Servidores
+            capitulation:
+                one: Capitulação
+                other: Capitulações
+            precatory:
+                one: Precatória
+                other: Precatórias
+            tco:
+                one: TCO
+                other: TCOs
+            bo:
+                one: BO
+                other: BOs
+            seizure:
+                one: Apreensão
+                other: Apreensões
+        attributes:
+            registry:
+                id: Código
+                created_at: Criado em
+                updated_at: Atualizado em
+                email: E-mail
+                name: Delegacia
+                address: Endereço
+                phone: Telefone
+                active: Ativo
+            person:
+                id: Código
+                created_at: Criado em
+                updated_at: Atualizado em
+                name: Nome da Pessoa
+                cpf: CPF
+                rg: Identidade
+                father: Nome do Pai
+                mother: Nome da Mãe
+                phone: Telefone
+            user:
+                id: Código
+                created_at: Criado em
+                updated_at: Atualizado em
+                name: Nome da Pessoa
+                cpf: CPF
+                name: Nome
+                registry: Delegacia
+                role: Tipo
+                password: Senha
+                password_confirmation: Confirmar Senha
+            inquery:
+                id: Código
+                created_at: Criado em
+                updated_at: Atualizado em
+                dp: Nº IP
+                establishment: Tombado
+                capitulation: Capitulação
+                seizure: Apreensão
+                tp: Tipo
+                reported: Relatado
+                reported_date: Relatado em
+                conclusion: Conclusos
+            join:
+                id: Código
+                created_at: Criado em
+                updated_at: Atualizado em
+                date: Data
+                inquery:  Inquérito
+            server:
+                id: Código
+                created_at: Criado em
+                updated_at: Atualizado em
+                name: Nome
+                registration: Matricula
+                office: Cargo
+                active: Ativo
+                registry: Delegacia
+            capitulation:
+                id: Código
+                article: Artigo
+                law: Lei
+                paragraph: §
+                subsection: Incisos
+                lines: Alíneas
+            precatory:
+                id: Código
+                n: Número
+                server: Delegado
+                inquery: Inquérito
+                registry: Deprecada
+                conclusion: Conclusão
+                conclusion_date: Data da Conclusão
+            tco:
+                id: Código
+                n: Número
+                registry: Delegacia
+                conclusion: Conclusão
+                establishment: Tombado
+                conclusion: Concluso
+                city: Cidade
+            boc:
+                id: Código
+                n: Número
+                registry: Delegacia
+                conclusion: Conclusão
+                establishment: Tombado
+                conclusion: Concluso
+                city: Cidade
+            bo:
+                id: Código
+                n: Número
+                registry: Delegacia
+                ocorrencia: Ocorrência
+                fato: Comunicação
+                city: Cidade
+            seizure:
+                id: Código
+                name: Nome

@@ -1,0 +1,18 @@
+<%= select2('#conclusion') %>
+
+<div class="row border mb-3" align="center">
+  <div class="ml-3">
+    <%= form_tag( precatories_path , method: "get") do %>
+    <b>Cumpridas:</b>
+    <%= select_tag :conclusion, options_for_select([ ['-----', ''],['Sim', 1], ['Não', 0]], params[:conclusion]) %> 
+    <b>Ano:</b>
+    <%= text_field_tag :year, params[:year], size: 8 %>
+    <b>Filtra por Data:</b>
+    <%= date_field_tag :start, params[:start] %> <b>até</b>
+    <%= date_field_tag :end, params[:end] %>
+    <%= button_tag(type: 'submit', class: 'btn btn-primary fa fa-search', id: 'button_banco', name: nil) do %>
+    <% end %>
+    <% end %>     
+</div>
+</div>
+

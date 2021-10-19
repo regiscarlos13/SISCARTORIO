@@ -1,0 +1,80 @@
+<% @title_painel = "Listagem da #{@seizure.model_name.human(count: 1)}" %>
+
+<p>
+  <strong>Procedimento:</strong>
+  <%= @seizure.procedimento %>
+</p>
+
+<p>
+  <strong>Inquery:</strong>
+  <%= @seizure.inquery %>
+</p>
+
+<p>
+  <strong>Boc:</strong>
+  <%= @seizure.boc %>
+</p>
+
+<p>
+  <strong>Bo:</strong>
+  <%= @seizure.bo %>
+</p>
+
+<p>
+  <strong>Tco:</strong>
+  <%= @seizure.tco %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @seizure.name %>
+</p>
+
+<p>
+  <strong>Destino:</strong>
+  <%= @seizure.destino %>
+</p>
+
+<p>
+  <strong>Doc:</strong>
+  <%= @seizure.doc %>
+</p>
+
+<p>
+  <strong>Data:</strong>
+  <%= @seizure.data %>
+</p>
+
+<p>
+  <strong>Veiculo:</strong>
+  <%= @seizure.veiculo %>
+</p>
+
+<p>
+  <strong>Tipo:</strong>
+  <%= @seizure.tipo_veiculo %>
+</p>
+
+<p>
+  <strong>Cor:</strong>
+  <%= @seizure.cor %>
+</p>
+
+<p>
+  <strong>Placa:</strong>
+  <%= @seizure.placa %>
+</p>
+
+<p>
+  <strong>Chassi:</strong>
+  <%= @seizure.chassi %>
+</p>
+
+
+<%= link_to edit_seizure_path(@seizure), class: 'btn btn-primary', title: 'Alterar Dados' do %> 
+<i class="glyphicon glyphicon-pencil"> Alterar</i> 
+<% end %>
+&nbsp;
+<%= link_to seizures_path, class: "btn btn-warning", title: "Voltar para Pagina Inicial" do %>
+<i class="glyphicon glyphicon-arrow-left"> Voltar</i> 
+<% end %>

@@ -1,0 +1,13 @@
+<%= index_table_javascript %>
+<%= index_table_style %>
+
+<% @title_painel = "Relação de #{@natures.model_name.human(count: 2)}" %>
+<% @btn_new = btn_new(new_nature_path) %>
+
+<div class="table-responsive">
+  <%= table_for(@natures, 'index') do %>
+	     	<% field_table(@natures.model.human_attribute_name('name'))  { |f| f.name } %>
+	     	<% field_table(@natures.model.human_attribute_name('ativo'))  { |f| i18n_yes(f.ativo) } %>
+         <% btn_for %>
+  <% end %>
+</div>

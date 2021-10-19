@@ -1,0 +1,68 @@
+<% @style = "border-style: solid " %>
+
+<%= wicked_pdf_stylesheet_link_tag "relatorios/livros" %>
+
+
+<% dados = @capitulations.map do |f| %>
+<% "Art(s): #{f.article} -" "#{f.paragraph.blank? ? '' : ' §: ' + f.paragraph + ','}"  "#{f.subsection.blank? ? '' :  ' Inciso(s): ' + f.subsection }" "#{f.lines.blank? ? '' :  ' Alinea(s): ' + f.lines}" " da #{f.law}" %>
+<% end %>
+
+<div class="header"> 
+
+  <%= wicked_pdf_image_tag 'pc.jpg', class: 'img2', style: 'margin-right: 30px;' %>
+  <%= wicked_pdf_image_tag 'gce.jpg', class: 'img1', style: 'margin-left: 30px;'%>
+
+  <div align="center">
+    <b> GOVERNO DO ESTADO DO CEARÁ</br>
+    POLÍCIA CIVIL</br>
+  DEPARTAMENTO DE POLÍCIA DO INTERIOR SUL - DPI SUL</br>
+  <%= current_user.registry.name %></br>
+  <%= current_user.registry.email %></b>
+</div>
+</div>
+
+
+
+<div class="container">
+  <%= wicked_pdf_image_tag 'pc.jpg', class: 'img-fundo'%>
+  
+<div class="junto">
+  
+
+  <div align="center" style="font-size: 40px; font-weight: bold; margin-top: 100px" >
+   <p> <%= @inquery.year.year %></p>
+   <p> INQUÉRITO POLICIAL</p>
+   <p><%= @inquery.tp.upcase %></p>
+ </div>
+
+
+
+
+
+ <div style="margin-top: 100px; font-size: 20px; line-height: 50px; margin-left: 10px;">
+
+  <b style="font-size: 20px">REGISTRADO SOB Nº:</b> <%= "#{@inquery.dp}-#{@inquery.n.to_s.rjust(3, '0')}/#{@inquery.year.year}" %> <br>
+  <b style="font-size: 20px">INCIDÊNCIA PENAL:</b> <%= dados.join(", ") %> <br>
+  <b style="font-size: 20px">INDICIADO(A):</b> <%= "#{ if @involveds_indiciados.blank? then 'A IDENTIFICAR' elsif @involveds_indiciados.ids.count == 1 then @involveds_indiciados[0].person.name else @involveds_indiciados[0].person.name + ' E OUTROS'
+  end}" %> <br>
+  <b style="font-size: 20px">VÍTIMA(S):</b> <%= "#{ if @involveds_vitimas.blank? then 'A IDENTIFICAR' elsif @involveds_vitimas.ids.count == 1 then @involveds_vitimas[0].person.name else @involveds_vitimas[0].person.name + ' E OUTROS'
+  end}" %> <br>
+</div>
+
+
+<div align="center" style="font-size: 30px; font-weight: bold; margin-top: 70px;">
+  <p>A U T U A Ç Ã O</p>
+</div>
+
+
+<div  style="font-size: 25px; text-align: justify; line-height: 45px; margin-left: 20px; margin-right: 20px">
+  <p> Aos <%= I18n.l @inquery.establishment, :format => :long %>, nesta cidade de Solonópole-CE, na <%= current_user.registry.name.titleize %>, autuo na forma da lei e do estilo <b style="font-size: 20px"><%= @inquery.tp %></b>, que adiante se segue. Do que para constar, lavro este termo. Eu, _____, Escrivã(o) que digitei.</p>
+</div>
+
+</div>
+</div>
+
+<div class="footer" align="center" style="margin-top: 40px">
+  <%= current_user.registry.address %> <br>
+  <%= current_user.registry.phone %>
+</div>

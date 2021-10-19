@@ -1,0 +1,15 @@
+<%= index_table_javascript %>
+<%= index_table_style %>
+
+<% @title_painel = "Relação de #{@servers.model_name.human(count: 2)}" %>
+<% @btn_new = btn_new(new_server_path) %>
+
+<div class="table-responsive">
+  <%= table_for(@servers, 'index') do %>
+	     	<% field_table(@servers.model.human_attribute_name('name'))  { |f| f.name } %>
+        	<% field_table(@servers.model.human_attribute_name('registration'))  { |f| f.registration } %>
+        	<% field_table(@servers.model.human_attribute_name('office'))  { |f| f.office } %>
+        	<% field_table(@servers.model.human_attribute_name('active'))  { |f| i18n_yes(f.active) } %>
+         <% btn_for %>
+  <% end %>
+</div>

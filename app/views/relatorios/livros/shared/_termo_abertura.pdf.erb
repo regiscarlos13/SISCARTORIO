@@ -1,0 +1,18 @@
+<br>
+<div class="container">
+	<%= wicked_pdf_image_tag 'pc.jpg', class: 'img-fundo'%>
+
+	<div class="junto border">
+		<div align="center" style="font-size: 35px; font-weight: bold; ">
+			<br>
+			<p>	<u>TERMO DE ABERTURA</u></p>
+			<p> <%= @name_termo %> <%= @year %></p>
+		</div>
+		<br>
+		<p style="font-size: 20px; line-height: 60px; text-align: justify; margin-left: 30px; margin-right: 25px"> Aos 01 dia do mês de janeiro ano de <%= @year %>, na sede da <%= current_user.registry.name %>, declaro <b style="font-size: 20px">ABERTO O <%= @name_termo %> <%= @year %></b>, nos termos do  <b style="font-size: 20px">TÍTULO III do MANUAL DE PROCEDIMENTO DE POLCÍCIA JUDICIÁRIA DO CEARÁ, instituido pela PORTARIA JUDICIÁRIA 0617/2013-GS/DGPC</b>, datada de 18/04/2013 e publicada no Diário Oficial do Estado do Ceará de 26/04/2013 – cad. 2 – pág. 120 e segts., <b style="font-size: 20px"> determinando que sejam registrados no presente livro todo(a)s o(a)s <%= @livro %> lavrado(a)s nesta Delegacia a partir do de nº <%= @start_tombo %> em <%= date(@first_id) %></b> .</p>
+
+		<br> <br><br> <br><br> <br><br> <br><br> <br><br>
+
+	</div>
+</div>
+<div class="page-break"></div>

@@ -1,0 +1,35 @@
+<div align="center">
+	<font style="font-size: 20px" ><b> Relação de Cartas Precatórias</b></font>
+</div>
+<br>
+<table>
+	<thead>
+		<tr>
+			<th>Número</th>
+			<th>Data</th>
+			<th>Deprecada</th>
+			<th>Inquérito</th>
+			<th>Cumprida</th>
+			<th>Tempo</th>
+		</tr>
+	</thead>
+	<% @precatories.sort.each do |f| %>
+	<tbody>
+		<tr>
+			<td><%= "#{f.n.to_s.rjust(3, '0')}/#{f.year.year}" %></td>
+			<td><%=  date(f.year)  %></td>
+			<td><%=  f.registry.name  %></td>
+			<td><%= f.inquery_id == 35 ? f.ipantigo : "#{f.inquery.dp} - #{f.inquery.n.to_s.rjust(3, '0')}/ #{f.inquery.year.year}" %></td>
+			<td><%= f.conclusion_date.blank? ? 'Não' : date(f.conclusion_date) %></td>
+			<td><%= f.conclusion_date.blank? ?  time_ago_in_words(f.year) : '-' %></td>
+		</tr>
+	<% end %>
+			
+	</tbody>
+</table>
+
+<br>
+<p>Total de Cartas Precatórias: <%= @precatories.count  %></p>
+<p>Total de Cartas Precatórias Cumpridas: <%= @precatories.where(conclusion: 1).count  %></p>
+<p>Total de Cartas Precatórias Não Cumpridas: <%= @precatories.where(conclusion: 0).count  %></p>
+

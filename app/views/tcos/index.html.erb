@@ -1,0 +1,23 @@
+<%= index_table_javascript %>
+<%= index_table_style %>
+
+<% @title_painel = "Relação de #{@tcos.model_name.human(count: 2)}" %>
+<% @btn_new = btn_new(new_tco_path) %>
+
+<% @btn_imprimir = link_to "", tcos_path(@tcos, format: :pdf, conclusion: params[:conclusion], year: params[:year], providenca: params[:providenca], start: params[:start], end: params[:end], origem: params[:origem] ), target: "_blank", class: 'btn btn-warning float-right fa fa-print  mr-2' %>
+
+
+<%= render partial: 'tcos/shared/filter' %>
+
+
+<div class="table-responsive">
+  <%= table_for(@tcos, 'index') do %>
+  
+      <% field_table(@tcos.model.human_attribute_name('dp'))  { |f| "#{f.dp} - #{f.n.to_s.rjust(3, '0')}/ #{f.year.year}"  } %>
+        	<% field_table(@tcos.model.human_attribute_name('establishment'))  { |f| date(f.establishment) } %>
+        	<% field_table(@tcos.model.human_attribute_name('city'))  { |f| f.city.nome } %>
+        	<% field_table(@tcos.model.human_attribute_name('providencia'))  { |f| situation_procedimento(f.providenca) } %>
+        	<% field_table(@tcos.model.human_attribute_name('conclusion'))  { |f| i18n_yes(f.conclusion) } %>
+         <% btn_for %>
+  <% end %>
+</div>

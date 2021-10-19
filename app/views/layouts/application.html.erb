@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SISEPC</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+
+<body>
+  <%= render "layouts/shared/messages" %>
+  <%= render "layouts/shared/spinner" %>
+  <%= render "layouts/menus/menus" %>
+
+
+  <div class="card mt-3 mb-4" >
+    <div class="card-header ">
+      <%= @title_painel %><%= @btn_imprimir %> <%= @btn_new %>
+    </div>
+    <div class="card-body">
+       <%= yield %>
+   </div>
+ </div>
+ <br>   
+ <nav class="navbar fixed-bottom  navbar-expand-lg navbar-dark" style= "background-color: #28a745";>
+  <a class="navbar-brand" href="#"> © Copyright <%= Time.new.year %> - Regis Carlos</a>
+</nav>
+</body>
+</html>
+
+<%= render partial: 'layouts/related/modal' %>

@@ -1,0 +1,23 @@
+<%= select2('#providenca') %>
+<%= select2('#nature') %>
+<div class="row border mb-3" align="center">
+  <div class="ml-3">
+    <%= form_tag( bos_path , method: "get") do %>
+
+     <b>Natureza:</b>
+    <%= select_tag :nature, options_from_collection_for_select(@natures, :id, :name, params[:nature]), prompt: '-----'  %> 
+        
+    <b>Providencias:</b>
+    <%= select_tag :providenca, options_for_select([ ['-----', ''],['Arquivado', 0], ['Convertido', 1], ['Transferido', 2], ['Em Andamento', 3]], params[:providenca])  %> 
+    <b>Ano:</b>
+    <%= text_field_tag :fato, params[:fato], size: 8 %>
+    <b>Filtra por Data:</b>
+    <%= date_field_tag :start, params[:start] %> <b>até</b>
+    <%= date_field_tag :end, params[:end] %>
+    <%= button_tag(type: 'submit', class: 'btn btn-primary fa fa-search', id: 'button_banco', name: nil) do %>
+    <% end %>
+    <% end %>     
+</div>
+</div>
+
+ 

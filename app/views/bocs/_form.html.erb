@@ -1,0 +1,90 @@
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#boc_city_id').select2({minimumInputLength: 3});
+  });
+</script>
+<%= select2('#boc_providenca') %>
+<%#= javascript_include_tag "bocs" %>
+
+<div align="center">
+  <div class="jumbotron col-8">
+    <%= simple_form_for(@boc) do |f| %>
+    <%= error_messages_for(@boc) %>
+
+    <div class="row">
+
+      <div class="col row">
+        <% if action_name == 'new' %>
+        <%= f.input :dp, :input_html => {style: 'width: 65px', value: current_user.registry.dp},label: '' %>
+        <% else %>
+        <%= f.input :dp, :input_html => {style: 'width: 65px'},label: ' ' %>
+        <% end %>
+        <div class="form-group">
+         <%= f.input :n, :input_html => {class: 'form-control', style: 'width: 75px' },label: 'Nº IP' %>
+       </div>
+       <%= f.input :year, as: :date, discard_month: true, discard_day: true, input_html: { class: 'form-control form-control-sm' }, label: '' %>
+
+     </div>
+
+     <div class="col">
+      <%= f.input :establishment, as: :date, html5: true, input_html: { class: 'form-control form-control-sm' }, label: 'Tombado em:' %>
+    </div>
+
+    <div class="col">
+      <%= f.input :city_id, label_method: :find_city, collection: @cities, label: 'Local da Ocorrência:'%>
+    </div>
+
+
+  </div>
+
+
+  <div class="form-row" align="left">
+    <div class="col">
+
+      <div id="origem">
+        <%= f.input :origem, collection: @origems, as: :radio_buttons %>
+      </div>
+    </div>
+
+    <div class="col" id="tipo">
+      <%= f.input :tipo, collection: @tipobocs, as: :radio_buttons %>
+    </div>
+    <div class="col" id="documento">
+      <%= f.input :documento %>
+    </div>
+    <div class="col" id="bo" >
+      <%= f.association :bo, label_method: :n, label: 'Bo', input_html: { style: 'width: 100%' } %>
+    </div>
+    <div class="col" id="tco" >
+      <%= f.association :tco, label_method: :find_tco, label: 'TCO', input_html: { style: 'width: 100%' } %>
+
+    </div>
+    <div class="col" id="ip" >
+      <%= f.association :inquery, label_method: :find_inquery, label: 'IP', input_html: { style: 'width: 100%' } %>
+
+    </div>
+    <div class="col" id="comp" ></div>
+  </div>
+  
+  <div class="row">
+    <div class="col">
+      <div class="form-check form-check-inline">
+        <%= f.input :providenca, collection: @providencas, prompt: false, label: 'Situação: ', as: :radio_buttons, item_wrapper_class: 'custom-control-inline form-check-input' %>
+      </div>
+
+      
+    </div>
+    <div class="col-2">
+      <%= f.input :conclusion %>
+      
+    </div>
+  </div>
+
+  <hr>
+  <%= btn_save %>
+  <%= btn_cancel(tcos_path) %>
+
+</div>
+</div>
+
+<% end %>

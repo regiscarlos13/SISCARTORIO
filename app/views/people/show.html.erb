@@ -1,0 +1,40 @@
+<% @title_painel = "Listagem da #{@person.model_name.human(count: 1)}" %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @person.name %>
+</p>
+
+<p>
+  <strong>Cpf:</strong>
+  <%= formated_cpf(@person.cpf) %>
+</p>
+
+<p>
+  <strong>Rg:</strong>
+  <%= @person.rg %>
+</p>
+
+<p>
+  <strong>Father:</strong>
+  <%= @person.father %>
+</p>
+
+<p>
+  <strong>Mother:</strong>
+  <%= @person.mother %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= formated_phone(@person.phone) %>
+</p>
+
+
+<%= link_to edit_person_path(@person), class: 'btn btn-primary', title: 'Alterar Dados' do %> 
+<i class="glyphicon glyphicon-pencil"> Alterar</i> 
+<% end %>
+&nbsp;
+<%= link_to people_path, class: "btn btn-warning", title: "Voltar para Pagina Inicial" do %>
+<i class="glyphicon glyphicon-arrow-left"> Voltar</i> 
+<% end %>

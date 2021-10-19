@@ -1,0 +1,54 @@
+<%= select2('#join_inquery_id') %>
+<%= select2('#join_server_id')  %>
+<%= simple_form_for(@join) do |f| %>
+<div class="form-row justify-content-center  ">
+	<div class="col-sm-12 col-md-10 col-lg-8 border">
+		<div class='form-inline'>
+			
+			<div class="col-3">
+				
+			<% if action_name == 'new'  %>
+			<%= f.input :date, as: :date, html5: true, input_html: { class: 'form-control form-control-sm', value: Time.now.strftime('%Y-%m-%d') }
+			%>
+			<% else %>
+			<%= f.input :date, as: :date, html5: true, input_html: { class: 'form-control form-control-sm' } %>
+			<% 	end %>
+
+			</div>
+
+			<div class="col-4">
+				<%= f.association :inquery, label_method: :find_inquery, value_method: :id,  collection: @inqueries_all, :input_html => {style: 'width: 150px'} %>
+			</div>
+
+			<div class="col-5">
+				<%= f.input :folha, label: 'Fl. Despacho: ' %>
+			</div>
+
+		</div>
+		
+			<%= f.association :server, collection: @servers, label: 'Escrivã(o)' %>
+	<hr>
+		<div id="joinsanexos">
+			<%= f.simple_fields_for(:joinsanexos) do |ff| %>
+
+			<%= render partial: "joinsanexo_fields", locals: { f: ff } %>
+
+			<% end %>
+			<div class="field">
+				<%= link_to_add_association('[Juntar Documento]', f, :joinsanexos) %>
+			</div>
+		</div>
+
+
+		<hr>
+		<div class="mb-3">
+			<%= btn_save %>
+			<%= btn_cancel(joins_path) %>
+		</div>
+
+	</div>
+</div>
+
+
+<% end %>
+

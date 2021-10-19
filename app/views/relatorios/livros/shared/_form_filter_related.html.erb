@@ -1,0 +1,6 @@
+<%= form_tag((@route), target: "_blank", method: "get") do %>
+	<b>Ano:</b>
+	<%= text_field_tag :year, params[:year], size: 8 %>
+	<%= button_tag(type: 'submit', class: 'btn btn-primary fa fa-print', id: 'button_banco', name: nil) do %>
+	<% end %>
+<% end %> 

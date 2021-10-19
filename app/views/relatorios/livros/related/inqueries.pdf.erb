@@ -1,0 +1,69 @@
+<% if @inqueries.first.blank? %>
+
+<h1><strong>SEM IPs CADASTRADOS</strong></h1>
+
+<% else %>
+
+<% @year = @inqueries.first.year.year %>
+<% @livro = 'INQUÉRITOS POLICIAIS' %>
+<% @start_tombo =  "#{@inqueries.first.dp} - #{@inqueries.first.n.to_s.rjust(3, '0')} / #{@year}"  %> 
+<% @end_tombo = "#{@inqueries.last.dp} - #{@inqueries.last.n.to_s.rjust(3, '0')} / #{@inqueries.last.year.year}"   %>
+<% @name_termo = 'LIVRO DE REGISTRO DE INSTAURAÇÃO E REMESSA DE INQUÉRITOS POLICIAIS DE' %>
+<% @first_id = @inqueries.first.establishment %>
+<% @end_id = @inqueries.last.establishment %>
+
+
+<%= render partial: 'relatorios/livros/shared/capa' %>
+<%= render partial: 'relatorios/livros/shared/termo_abertura' %>
+
+		<table style="font-size: 16px; line-height: 35px;">
+			<tbody>
+				<% @inqueries.sort_by(&:n).each do |f| %>
+				<tr>
+					<td>
+						<% @involveds_vitimas = Involved.where(['inquery_id= ? and typeinvolved= ?', f.id , 1]) %>
+						<% @involveds_indiciados = Involved.where(['inquery_id= ? and typeinvolved= ?', f.id , 0]) %>
+						<% @capitulations = Capitulation.where(inquery_id: f.id) %>
+
+						<% @capitulacao =  @capitulations.map do |c| %>
+						<% "ART(S): #{c.article} -" "#{c.paragraph.blank? ? '' : ' §: ' + c.paragraph + ','}" 	"#{c.subsection.blank? ? '' :  ' INCISO(S): ' + c.subsection }" "#{c.lines.blank? ? '' :  ' ALINEA(S): ' + c.lines}" " DA #{c.law.name}" %>
+						<% end %>
+						<strong>IP:</strong> <%= "#{f.dp} - #{f.n.to_s.rjust(3, '0')}/ #{f.year.year}" %> - <%= f.tp %> 
+
+						<% @tipo = f.tipo %>
+							<% if f.bo.present? 
+									@doc =  f.bo.n 
+								elsif f.tco.present?
+									@doc =  f.tco.dp.to_s + '-' + f.tco.n.to_s.rjust(3, '0') + '/' + f.tco.year.year.to_s
+								elsif f.boc.present?
+									@doc =  f.boc.dp.to_s + '-' + f.boc.n.to_s.rjust(3, '0') + '/' + f.boc.year.year.to_s
+								elsif f.tp == 'FLAGRANTE'
+									@doc =  ''
+								elsif f.documento.present?
+									@doc =  f.documento
+
+							end
+								  %>
+
+						<strong style="margin-left: 150px;">ORIGEM:</strong> <%= "#{f.origem} " '- ' "#{@tipo} " '- ' "#{@doc}" %><br>
+
+
+
+
+						<strong>DATA DE INSTAURAÇÃO:</strong> <%= date(f.establishment) %> <br>
+						<strong>CAPITULAÇÃO PENAL: </strong> <%=h truncate(@capitulacao.join(", "), :length => 75) %> <br>
+						<strong>VÍTIMA(S):</strong> <%= "#{ if @involveds_vitimas.blank? then 'A IDENTIFICAR' elsif @involveds_vitimas.ids.count == 1 then @involveds_vitimas[0].person.name else @involveds_vitimas[0].person.name + ' E OUTROS' end}" %><br>
+
+						<strong>INDICIADO(S):</strong> <%= "#{ if @involveds_indiciados.blank? then 'A IDENTIFICAR' elsif @involveds_indiciados.ids.count == 1 then @involveds_indiciados[0].person.name else @involveds_indiciados[0].person.name + ' E OUTROS'
+						end}" %> <br>
+						<strong>LOCAL DA OCORRÊNCIA:</strong> <%= "#{f.city.nome.upcase!}" '/' "#{f.city.uf}" %> <br>
+						<strong>RELATADO:</strong>	<%= f.reported_date.blank? ? '____/____/______' : date(f.reported_date) %> <br>
+						<strong>APREENSÃO:</strong>	<%= f.seizure == true ? 'SIM' : 'NÃO' %> <br>
+
+					</td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+<%= render partial: 'relatorios/livros/shared/termo_encerramento' %>
+<% end %>

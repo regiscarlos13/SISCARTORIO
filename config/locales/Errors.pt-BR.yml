@@ -1,0 +1,14 @@
+'pt-BR':
+ activerecord:
+    errors:
+      models:
+        person:
+          attributes:
+            cpf:
+              invalid: "Não está correto"
+        user:
+          attributes:
+            cpf:
+              invalid: "Não está correto"
+            email:
+              taken: 'Email Cadastro'

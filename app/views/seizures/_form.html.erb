@@ -1,0 +1,80 @@
+<%= javascript_include_tag "seizures" %>
+
+<%= select2('#seizure_tipo_veiculo') %>
+<%= select2('#seizure_cor') %>
+
+<script type="text/javascript">
+  $(document).ready(function () { 
+    $("#seizure_placa").mask('SSS-0000');
+
+  });
+</script>
+
+
+<%= simple_form_for(@seizure) do |f| %>
+<%= error_messages_for(@seizure) %>
+
+<div class="form-row justify-content-center  ">
+  <div class="col-sm-12 col-md-10 col-lg-8 border jumbotron">
+    <div class="form-row">
+      <div class="col-2">
+    
+        <% if action_name == 'new' %>
+        <%= f.input :procedimento, as: :radio_buttons, collection: @procedimentos, checked: @procedimentos.first %>
+        <% else %>
+        <%= f.input :procedimento, as: :radio_buttons, collection: @procedimentos %>
+        <% end %>
+        <%= f.input :veiculo, label: 'Veículo?' %>
+      </div>
+
+      <div class="col-3">
+        <%= f.association :inquery, label_method: :find_inquery, label: 'Número' %>
+        <%= f.association :tco, label_method: :find_tco, label: 'Número' %>
+        <%= f.association :boc, label_method: :find_boc, label: 'Número' %>
+        <%= f.association :bo, label_method: :n, label: 'Número' %>
+
+        <%= f.input :quantidade %>
+      </div>
+
+      <div class="col-7">
+        <%= f.input :name, input_html: {  style: 'text-transform:uppercase'}  %>
+        <div class="form-row">
+          <div class="col-4">
+            <%= f.input :destino, as: :radio_buttons, collection: @destinos %>
+          </div>
+          <div class="col">
+            <%= f.input :data, as: :date, html5: true, input_html: { class: 'form-control form-control-sm' }%>
+            <%= f.input :doc %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row"  id="veiculos">
+      <div class="col">  
+        <%= f.input :tipo_veiculo, collection: @tipo_veiculo, input_html: {style: 'width: 100%'} %>
+        
+      </div>
+      <div class="col">  
+        <%= f.input :cor, collection: @cores, input_html: {style: 'width: 100%'} %>
+        
+      </div>
+      <div class="col">  
+        <%= f.input :placa, input_html: {  style: 'text-transform:uppercase'}  %>
+        
+      </div>
+      <div class="col">  
+        <%= f.input :chassi, input_html: {  style: 'text-transform:uppercase'}  %>
+        
+      </div>
+
+    </div>
+<hr>
+<div align="center">
+  
+  <%= btn_save %>
+  <%= btn_cancel(seizures_path) %>
+  </div>
+</div>
+</div>
+<% end %>

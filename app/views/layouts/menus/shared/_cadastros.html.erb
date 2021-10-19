@@ -1,0 +1,22 @@
+<% if current_user.role == 'Admin' %>
+<%= link_to ' Delegacias', registries_path, class: 'fa fa-table dropdown-item' %>
+<div class="dropdown-divider"></div>
+<%= link_to ' Usuários', users_path, class: 'fa fa-user-o dropdown-item' %>
+<div class="dropdown-divider"></div>
+<%= link_to ' Pessoas', people_path, class: 'fa fa-users dropdown-item' %>
+<div class="dropdown-divider"></div>
+<%= link_to ' Servidores', servers_path, class: 'fa fa- dropdown-item' %>
+<div class="dropdown-divider"></div>
+<%= link_to ' Naturezas', natures_path, class: 'fa fa-list-alt dropdown-item' %>
+<div class="dropdown-divider"></div>
+<%= link_to ' Leis', laws_path, class: 'fa fa-gavel dropdown-item' %>
+
+
+<% else %>
+
+<%= link_to ' Pessoas', people_path, class: 'fa fa-users dropdown-item' %>
+<div class="dropdown-divider"></div>
+<%= link_to ' Servidores', servers_path, class: 'fa fa-users dropdown-item' %>
+
+
+<% end %>
